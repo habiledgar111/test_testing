@@ -1,10 +1,10 @@
-name: Auto Teting Springboot
+name: Auto Testing Spring Boot
 
 on:
   push:
-    branches: [ "dev" ]
+    branches: [ "main","dev" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "main","dev" ]
 
 jobs:
   build:
@@ -22,10 +22,10 @@ jobs:
           cache: maven
 
       - name: Build & test with Maven
-        run: mvn -B verify
+        run: mvn -B test
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
-        with: 
+        with:
           name: junit-report
-          path: target/surefile-reports/
+          path: target/surefire-reports/
